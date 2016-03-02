@@ -22,6 +22,7 @@ class Header extends Component {
           <li><Link activeClassName="active" to="/firebase">{msg.firebase}</Link></li>
           <li><Link activeClassName="active" to="/todos">{msg.todos}</Link></li>
           <li><Link activeClassName="active" to="/me">{msg.me}</Link></li>
+          <li><Link activeClassName="active" to="/ticket">{msg.ticket}</Link></li>
           {!viewer &&
             <li><Link activeClassName="active" to="/login">{msg.login}</Link></li>
           }

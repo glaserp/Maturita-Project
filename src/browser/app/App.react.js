@@ -1,4 +1,3 @@
-import './App.scss';
 import Component from 'react-pure-render/component';
 import Footer from './Footer.react';
 import Header from './Header.react';
@@ -40,9 +39,7 @@ class App extends Component {
           titleTemplate="%s - Este.js"
         />
         {/* Pass location to ensure header active links are updated. */}
-        <Header location={location} />
         {children}
-        <Footer />
       </div>
     );
   }
