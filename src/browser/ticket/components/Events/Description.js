@@ -1,11 +1,11 @@
 import Component from 'react-pure-render/component'
 import React, {PropTypes} from 'react'
 
-export default class Place extends Component {
+export default class Description extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-    eventimage: PropTypes.object.isRequired
+    eventImage: PropTypes.object
   };
 
   constructor(props) {
@@ -13,11 +13,11 @@ export default class Place extends Component {
   }
 
   render() {
-    const {title, text, eventimage} = this.props
+    const {title, text, eventImage} = this.props
 
     return (
       <div className="desc">
-        <img src={eventimage.url}alt={title} className="event-picture" />
+        <img src={eventImage.url}alt={title} className="event-picture" />
         <h2>{title}</h2>
         <p>
           {text}

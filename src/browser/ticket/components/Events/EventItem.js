@@ -6,6 +6,7 @@ import Description from './Description'
 
 export default class EventItem extends Component {
   static propTypes = {
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     text: PropTypes.string,
     image: PropTypes.object,
@@ -19,16 +20,17 @@ export default class EventItem extends Component {
   }
 
   render() {
-    const {datetime, place, money, title, text, image} = this.props
+    const {datetime, place, money, title, text, image, id} = this.props
 
     return (
       <li>
         <Description
           title={title}
           text={text}
-          eventimage={image}
+          eventImage={image}
         />
         <Datas
+          url={id}
           datetime={datetime}
           place={place}
           money={money}

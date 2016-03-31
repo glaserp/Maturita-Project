@@ -3,7 +3,8 @@ import React, {PropTypes} from 'react'
 
 export default class HighlightItem extends Component {
   static propTypes = {
-    images: PropTypes.array.isRequired
+    images: PropTypes.array.isRequired,
+    url: PropTypes.string.isRequired
   };
 
   constructor(props) {
@@ -11,7 +12,7 @@ export default class HighlightItem extends Component {
   }
 
   render() {
-    let {images} = this.props
+    let {images, url} = this.props
     images = images.map(image => (image.minwidth) ? (
         <source
           key = {image.src}

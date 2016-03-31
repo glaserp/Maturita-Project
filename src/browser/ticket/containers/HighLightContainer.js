@@ -1,42 +1,28 @@
 import Component from 'react-pure-render/component'
-import React from 'react'
+import React, {PropTypes} from 'react'
+import {connect} from 'react-redux'
+
+import {fetch_highlight} from '../../../common/ticket/actions.js'
 
 import HighLight from '../components/HighLight/HighLight'
 
-export default class HighlightContainer extends Component {
+class HighlightContainer extends Component {
+  static propTypes = {
+    imageSet: PropTypes.array
+  };
+
   constructor(props) {
     super(props)
   }
 
+  componentDidMount() {
+    const {dispatch} = this.props
+    dispatch(fetch_highlight())
+  }
+
   render() {
-    const imageSet = [
-      [
-        {
-          src: 'http://lorempixel.com/1920/640/nightlife',
-          minwidth: '1024px'
-        },
-        {
-          src: 'http://lorempixel.com/1500/500/nightlife',
-          minwidth: '900px'
-        },
-        {
-          src: 'http://lorempixel.com/900/675/nightlife',
-        }
-      ],
-      [
-        {
-          src: 'http://lorempixel.com/1920/640/nature',
-          minwidth: '1024px'
-        },
-        {
-          src: 'http://lorempixel.com/1500/500/nature',
-          minwidth: '900px'
-        },
-        {
-          src: 'http://lorempixel.com/900/675/nature',
-        }
-      ]
-    ]
+    const {imageSet} = this.props
+
     return (
       <HighLight
         imageSet={imageSet}
@@ -44,3 +30,7 @@ export default class HighlightContainer extends Component {
     )
   }
 }
+
+export default connect(state => ({
+  imageSet: state.ticket.highlight
+}))(HighlightContainer)

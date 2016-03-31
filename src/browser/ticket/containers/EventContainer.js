@@ -1,48 +1,50 @@
 import Component from 'react-pure-render/component'
-import React from 'react'
+import React, {PropTypes} from 'react'
+import Helmet from 'react-helmet'
+import {connect} from 'react-redux'
+
+import {fetch_events} from '../../../common/ticket/actions.js'
 
 import Event from '../components/Event/Event'
 
-export default class EventContainer extends Component {
+class EventContainer extends Component {
+  static propTypes = {
+    events: PropTypes.array,
+    url: PropTypes.string
+  };
+
+  constructor(props) {
+    super(props)
+  }
+
+  componentDidMount() {
+    const {dispatch} = this.props
+    dispatch(fetch_events())
+  }
+
   render() {
-    const event = {
-      title: 'Plavci - 50. výročí',
-      text: `
-              První turné proběhlo v jarních měsících letošního roku a začalo vytvářet tradici.
-              Každoročně se budeme moci setkávat na jarních i předvánočních koncertech,
-              na kterých zaznějí opravdové hity pro všechny generace.
-              Na Vánočním koncertě rozezpívají a roztleskají publikum Rangers band,
-              kteří si připomenou zároveň 50. výročí
-              vzniku skupiny Rangers Plavci.
-              40 let své existence si připomenou Karel Kahovec se svými George & Beatovens,
-              přičemž nezapomenou ani na svého dlouhodobého frontmana Petra Nováka.
-            `,
-      datetime: {
-        date: '5. 11. 2016',
-        time: '20:00'
-      },
-      tickets: [
-        {
-          name: "VIP",
-          price: 1490,
-          count: 100
-        },
-        {
-          name: "Classic",
-          price: 590,
-          count: 10000
-        }
-      ],
-      place: 'DRFG Arena Brno'
+    const {children, events, url} = this.props
+
+    if (!events) {
+      return <p>Načítám...</p>
     }
 
-    const {children} = this.props
+    const event = events.filter(event => event.id == url)[0]
 
     return (
-      <Event
-        event={event}
-        {...this.props}
-      />
+      <div>
+        <Helmet
+          titleTemplate={event.title + ' - Detail - Vstupenky'}
+        />
+        <Event
+          event={event}
+          {...this.props}
+        />
+      </div>
     )
   }
 }
+
+export default connect(state => ({
+  events: state.ticket.events
+}))(EventContainer)

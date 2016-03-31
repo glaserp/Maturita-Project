@@ -9,7 +9,7 @@ export default class Search extends Component {
   render() {
     return (
       <div className="search">
-        <form action="/ticket/search" method="post">
+        <form action="/search" method="post">
           <input
             type="text"
             placeholder="Search"

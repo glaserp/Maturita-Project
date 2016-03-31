@@ -1,12 +1,13 @@
 import Component from 'react-pure-render/component'
 import React, {PropTypes} from 'react'
 import Slider from 'react-slick'
+import {Link} from 'react-router'
 
 import HighLightItem from './HighLightItem'
 
 export default class Highlight extends Component {
   static propTypes = {
-    imageSet: PropTypes.array.isRequired
+    imageSet: PropTypes.array
   };
 
   constructor(props) {
@@ -15,9 +16,14 @@ export default class Highlight extends Component {
 
   render() {
     let {imageSet} = this.props
-    imageSet = imageSet.map((images, id) => (
-      <div key = {id}>
-        <HighLightItem images = {images}/>
+
+    if (!imageSet) {
+      return <p>Načítám</p>
+    }
+
+    imageSet = imageSet.map((images) => (
+      <div key = {images._id}>
+        <Link to={'/detail/' + images.url} style={{display: 'block', margin: '0', padding: '0'}}><HighLightItem images = {images.images}/></Link>
       </div>
     ))
 

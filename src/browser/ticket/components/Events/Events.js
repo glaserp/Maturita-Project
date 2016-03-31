@@ -5,7 +5,7 @@ import EventItem from './EventItem'
 
 export default class Events extends Component {
   static propTypes = {
-    events: PropTypes.array.isRequired
+    events: PropTypes.array
   };
 
   constructor(props) {
@@ -21,6 +21,7 @@ export default class Events extends Component {
                                 .join(" ")
       return (
         <EventItem
+          id={event.id}
           title={event.title}
           text={event.text}
           image={event.image}

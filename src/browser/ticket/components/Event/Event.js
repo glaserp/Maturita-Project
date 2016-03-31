@@ -29,11 +29,6 @@ export default class Event extends Component {
           datetime={event.datetime}
         />
         <hr className="one" />
-        <section className="order">
-          {children ? React.cloneElement(children, {tickets: event.tickets}) :
-            <Link to="/detail/order" className="btn-detail">Objednat</Link>
-          }
-        </section>
       </div>
     )
   }

@@ -8,6 +8,7 @@ import Money from '../Info/Money'
 
 export default class Datas extends Component {
   static propTypes = {
+    url: PropTypes.string.isRequired,
     datetime: PropTypes.object.isRequired,
     place: PropTypes.string.isRequired,
     money: PropTypes.string.isRequired
@@ -18,7 +19,7 @@ export default class Datas extends Component {
   }
 
   render() {
-    const {datetime, place, money} = this.props
+    const {datetime, place, money, url} = this.props
 
     return (
       <div className="datas">
@@ -34,7 +35,7 @@ export default class Datas extends Component {
           <Money
             money={money}
           />
-          <li><Link to="detail" className="btn-detail">Zjistit více</Link></li>
+          <li><Link to={'detail/' + url} className="btn-detail">Zjistit více</Link></li>
         </ul>
       </div>
     )

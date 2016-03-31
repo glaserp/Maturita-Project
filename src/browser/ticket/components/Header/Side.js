@@ -1,25 +1,23 @@
 import Component from 'react-pure-render/component'
 import React, {PropTypes} from 'react'
-
-import SideMenu from './SideMenu'
+import {Link} from 'react-router'
 
 export default class Side extends Component {
-  static propTypes = {
-    sideMenuItems: PropTypes.array.isRequired
-  };
 
   constructor(props) {
     super(props)
   }
 
   render() {
-    const {sideMenuItems} = this.props
 
     return (
       <div className="side">
         <input id="hamburger" type="checkbox" className="hamburger-checkbox" />
         <label htmlFor="hamburger" className="hamburger-label"></label>
-        <SideMenu items={sideMenuItems} />
+        <nav className="side-menu">
+          <Link to="/login" className="side-menu-link">Přihlásit</Link>
+          <Link to="/register" className="side-menu-link">Registrovat</Link>
+        </nav>
       </div>
     )
   }

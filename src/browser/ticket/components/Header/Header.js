@@ -3,7 +3,7 @@ import React from 'react'
 
 import Logo from './Logo'
 import Search from './Search'
-import SideContainer from '../../containers/SideContainer'
+import Side from './Side'
 
 export default class Header extends Component {
 
@@ -16,7 +16,7 @@ export default class Header extends Component {
       <header className="header">
         <Logo/>
         <Search />
-        <SideContainer/>
+        <Side/>
       </header>
     )
   }
